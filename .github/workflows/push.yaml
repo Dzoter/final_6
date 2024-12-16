@@ -7,9 +7,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up dependencies
+        run: go mod tidy
+
       - name: Run Unit Tests
-        run: GOOS=linux GOARCH=amd64 go test
+        run: GOOS=linux GOARCH=amd64 go test ./...
 
       - name: Vet
-        run: |
-          go vet ./...
+        run: go vet ./...
